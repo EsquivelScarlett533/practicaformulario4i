@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Alta de Citas | Hospital Jaguares</title>
+</head>
+<body>
+
+<header>
+    <h1>Alta de Citas | Hospital Jaguares</h1>
+    <img width="250" align="center" src="ja.jpg" alt="Logo Hospital Jaguares">
+    <p>citas médicas</p>
+</header>
+
+<main>
+    <div class="form-container">
+        <form id="appointmentForm">
+            <div class="form-group">
+                <label>No. Cita:</label>
+                <input type="number" id="no_cita" placeholder="Ej: 11" required>
+            </div>
+
+            <div class="form-group">
+                <label>Paciente:</label>
+                <input type="text" id="nombre_paciente" placeholder="Nombre del paciente" required>
+            </div>
+
+            <div class="form-group">
+                <label>Médico Asignado:</label>
+                <input type="text" id="medico_asignado" placeholder="Nombre del médico" required>
+            </div>
+
+            <div class="form-group">
+                <label>Especialidad:</label>
+                <input type="text" id="especialidad_cita" placeholder="Ej: Pediatría" required>
+            </div>
+
+            <div class="form-group">
+                <label>Consultorio:</label>
+                <input type="number" id="consultorio_cita" placeholder="Ej: 401" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Registrar cita</button>
+        </form>
+    </div>
+
+    <table id="appointmentsTable">
+        <thead>
+            <tr>
+                <th>No. Cita</th>
+                <th>Paciente</th>
+                <th>Médico Asignado</th>
+                <th>Especialidad</th>
+                <th>Consultorio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>01</td>
+                <td>Juan Perez</td>
+                <td>Roberto Aranda</td>
+                <td>Cirugía General</td>
+                <td>501</td>
+            </tr>
+            <tr>
+                <td>02</td>
+                <td>Ana Garcia</td>
+                <td>Julian Sotomayor</td>
+                <td>Pediatra</td>
+                <td>105</td>
+            </tr>
+            <tr>
+                <td>03</td>
+                <td>Lucia torres</td>
+                <td>Martina Lozano</td>
+                <td>Médico General</td>
+                <td>401</td>
+            </tr>
+            <tr>
+                <td>04</td>
+                <td>Ana Silvia Ramos</td>
+                <td>Elena Villalobos</td>
+                <td>Cardiología</td>
+                <td>205</td>
+            </tr>
+            <tr>
+                <td>05</td>
+                <td>Maria Rodriguez</td>
+                <td>Fernando Hernandez</td>
+                <td>Médico General</td>
+                <td>210</td>
+            </tr>
+            <tr>
+                <td>06</td>
+                <td>Carlos Ruiz</td>
+                <td>Ulises Escobedo</td>
+                <td>Cirujano</td>
+                <td>308</td>
+            </tr>
+            <tr>
+                <td>07</td>
+                <td>Elena Mendez</td>
+                <td>Alondra Ramirez</td>
+                <td>Médico General</td>
+                <td>119</td>
+            </tr>
+            <tr>
+                <td>08</td>
+                <td>Roberto Gomez</td>
+                <td>Manuel Perez</td>
+                <td>Médico General</td>
+                <td>206</td>
+            </tr>
+            <tr>
+                <td>09</td>
+                <td>German Perez</td>
+                <td>Martina Lozano</td>
+                <td>Médico General</td>
+                <td>401</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Paciente 10</td>
+                <td>Marina Ruiz</td>
+                <td>Ginecología</td>
+                <td>302</td>
+            </tr>
+        </tbody>
+    </table> 
+
+    <a href="index.html" class="btn-back">Volver al inicio</a>
+</main>
+
+<footer>
+    <p>Esquivel Cano Nataly Scarlett | Programación</p>
+    <p>24308051280533 | 4-I</p>
+</footer>
+
+<script>
+    document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const noCita = document.getElementById('no_cita').value;
+        const paciente = document.getElementById('nombre_paciente').value;
+        const medico = document.getElementById('medico_asignado').value;
+        const especialidad = document.getElementById('especialidad_cita').value;
+        const consultorio = document.getElementById('consultorio_cita').value;
+
+        const noCitaFormateado = noCita.toString().padStart(2, '0');
+
+        const tableBody = document.getElementById('appointmentsTable').getElementsByTagName('tbody')[0];
+        const newRow = tableBody.insertRow();
+
+        const cellNoCita = newRow.insertCell(0);
+        const cellPaciente = newRow.insertCell(1);
+        const cellMedico = newRow.insertCell(2);
+        const cellEspecialidad = newRow.insertCell(3);
+        const cellConsultorio = newRow.insertCell(4);
+
+        cellNoCita.textContent = noCitaFormateado;
+        cellPaciente.textContent = paciente;
+        cellMedico.textContent = medico;
+        cellEspecialidad.textContent = especialidad;
+        cellConsultorio.textContent = consultorio;
+
+        document.getElementById('appointmentForm').reset();
+    });
+</script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+        background-color: #800040;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: #800040;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        color: #ffffff;
+        border-bottom: 4px solid #C2A649;
+    }
+
+    h1 {
+        color: #ffffff;
+        font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    header p {
+        color: #ffffff;
+        margin-top: 10px;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 40px 0px;
+        flex: 1;
+    }
+
+    .form-container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        border-top: 6px solid #C2A649;
+        margin-bottom: 40px;
+    }
+ 
+    .form-group {
+        margin-bottom: 22px;
+    }
+   
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #000000;
+        font-size: 14px;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #800040;
+        border-radius: 6px;
+        font-family: "Comic Sans MS", sans-serif;
+        font-size: 14px;
+        background-color: #faf7fa;
+        color: #333;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #C2A649;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(194, 166, 73, 0.6);
+    }
+
+    .btn-submit {
+        background-color: #C2A649;
+        color: white;
+        border: none;
+        padding: 14px 15px;
+        width: 100%;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        font-family: "Comic Sans MS", sans-serif;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        background-color: #a88e39;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Comic Sans MS', cursive;
+        margin-top: 15px;
+        background-color: #ffffff;
+    }
+
+    thead tr {
+        background-color: #4a0025;
+        color: white;
+    }
+
+    th, td {
+        border: 1px solid #800040;
+        padding: 12px 10px;
+        text-align: left;
+    }
+
+    tbody tr {
+        background-color: #ffffff;
+    }
+
+    tbody tr td {
+        color: #000000;
+    }
+
+    .btn-back {
+        display: inline-block;
+        text-align: center;
+        margin-top: 25px;
+        color: #ffffff;
+        text-decoration: underline;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .btn-back:hover {
+        color: #C2A649;
+    }
+
+    footer {
+        width: 100%;
+        background-color: #ffffff;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 13px;
+        color: #000000;
+        border-top: 4px solid #C2A649;
+        margin-top: 40px;
+    }
+
+    footer p {
+        margin: 4px 0;
+        font-family: 'Comic Sans MS', sans-serif;
+    }
+</style>
+</html>

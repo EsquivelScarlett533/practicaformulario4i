@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Alta de Médicos | Hospital Jaguares</title>
+</head>
+<body>
+
+<header>
+    <h1>Alta de Médicos | Hospital Jaguares</h1>
+    <img width="250" align="center" src="ja.jpg" alt="Logo Hospital Jaguares">
+    <p>Registro de personal médico y asignación de consultorios</p>
+</header>
+
+<main>
+    <div class="form-container">
+        <form id="doctorForm">
+            <div class="form-group">
+                <label>ID del Médico:</label>
+                <input type="text" id="id_medico" placeholder="Ej: DOC 11" required>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre Completo:</label>
+                <input type="text" id="nombre_medico" placeholder="Ej: Marina Ruiz" required>
+            </div>
+
+            <div class="form-group">
+                <label>Especialidad:</label>
+                <input type="text" id="especialidad_medico" placeholder="Ej: Ginecología" required>
+            </div>
+
+            <div class="form-group">
+                <label>Consultorio:</label>
+                <input type="number" id="consultorio_medico" placeholder="Ej: 302" required>
+            </div>
+
+            <div class="form-group">
+                <label>Disponibilidad:</label>
+                <select id="disponibilidad_medico" required style="width: 100%; padding: 12px; border: 2px solid #800040; border-radius: 6px; font-family: 'Comic Sans MS', sans-serif; font-size: 14px; background-color: #faf7fa;">
+                    <option value="Disponible">Disponible</option>
+                    <option value="No Disponible">No Disponible</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Registrar al médico</button>
+        </form>
+    </div>
+
+    <table id="doctorsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+                <th>Consultorio</th>
+                <th>Disponibilidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>DOC 01</td>
+                <td>Marina Ruiz</td>
+                <td>Ginecología</td>
+                <td>302</td>
+                <td style="color: green; font-weight: bold;">Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 02</td>
+                <td>Roberto Aranda</td>
+                <td>Cirugía General</td>
+                <td>501</td>
+                <td style="color: red; font-weight: bold;">No Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 03</td>
+                <td>Elena Villalobos</td>
+                <td>Cardiología</td>
+                <td>205</td>
+                <td style="color: green; font-weight: bold;">Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 04</td>
+                <td>Julian Sotomayor</td>
+                <td>Pediatra</td>
+                <td>105</td>
+                <td style="color: red; font-weight: bold;">No Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 05</td>
+                <td>Martina Lozano</td>
+                <td>Médico General</td>
+                <td>401</td>
+                <td style="color: green; font-weight: bold;">Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 06</td>
+                <td>Ulises Escobedo</td>
+                <td>Cirujano</td>
+                <td>308</td>
+                <td style="color: red; font-weight: bold;">No Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 07</td>
+                <td>Fernando Hernandez</td>
+                <td>Médico General</td>
+                <td>210</td>
+                <td style="color: green; font-weight: bold;">Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 08</td>
+                <td>Luisa Martinez</td>
+                <td>Ginecología</td>
+                <td>601</td>
+                <td style="color: red; font-weight: bold;">No Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 09</td>
+                <td>Alondra Ramirez</td>
+                <td>Médico General</td>
+                <td>119</td>
+                <td style="color: green; font-weight: bold;">Disponible</td>
+            </tr>
+            <tr>
+                <td>DOC 10</td>
+                <td>Manuel Perez</td>
+                <td>Médico General</td>
+                <td>206</td>
+                <td style="color: red; font-weight: bold;">No Disponible</td>
+            </tr>
+        </tbody>
+    </table> 
+
+    <a href="index.html" class="btn-back">Volver al inicio</a>
+</main>
+
+<footer>
+    <p>Esquivel Cano Nataly Scarlett | Programación</p>
+    <p>24308051280533 | 4-I</p>
+</footer>
+
+<script>
+    document.getElementById('doctorForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const id = document.getElementById('id_medico').value;
+        const nombre = document.getElementById('nombre_medico').value;
+        const especialidad = document.getElementById('especialidad_medico').value;
+        const consultorio = document.getElementById('consultorio_medico').value;
+        const disponibilidad = document.getElementById('disponibilidad_medico').value;
+
+        const tableBody = document.getElementById('doctorsTable').getElementsByTagName('tbody')[0];
+        const newRow = tableBody.insertRow();
+
+        const cellId = newRow.insertCell(0);
+        const cellNombre = newRow.insertCell(1);
+        const cellEspecialidad = newRow.insertCell(2);
+        const cellConsultorio = newRow.insertCell(3);
+        const cellDisponibilidad = newRow.insertCell(4);
+
+        cellId.textContent = id;
+        cellNombre.textContent = nombre;
+        cellEspecialidad.textContent = especialidad;
+        cellConsultorio.textContent = consultorio;
+        cellDisponibilidad.textContent = disponibilidad;
+
+        if (disponibilidad === "Disponible") {
+            cellDisponibilidad.style.color = "green";
+        } else {
+            cellDisponibilidad.style.color = "red";
+        }
+        cellDisponibilidad.style.fontWeight = "bold";
+
+        document.getElementById('doctorForm').reset();
+    });
+</script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+        background-color: #800040;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: #800040;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        color: #ffffff;
+        border-bottom: 4px solid #C2A649;
+    }
+
+    h1 {
+        color: #ffffff;
+        font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    header p {
+        color: #ffffff;
+        margin-top: 10px;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 40px 0px;
+        flex: 1;
+    }
+
+    .form-container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        border-top: 6px solid #C2A649;
+        margin-bottom: 40px;
+    }
+ 
+    .form-group {
+        margin-bottom: 22px;
+    }
+   
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #000000;
+        font-size: 14px;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #800040;
+        border-radius: 6px;
+        font-family: "Comic Sans MS", sans-serif;
+        font-size: 14px;
+        background-color: #faf7fa;
+        color: #333;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        border-color: #C2A649;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(194, 166, 73, 0.6);
+    }
+
+    .btn-submit {
+        background-color: #C2A649;
+        color: white;
+        border: none;
+        padding: 14px 15px;
+        width: 100%;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        font-family: "Comic Sans MS", sans-serif;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        background-color: #a88e39;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Comic Sans MS', cursive;
+        margin-top: 15px;
+        background-color: #ffffff;
+    }
+
+    thead tr {
+        background-color: #4a0025;
+        color: white;
+    }
+
+    th, td {
+        border: 1px solid #800040;
+        padding: 12px 10px;
+        text-align: left;
+    }
+
+    tbody tr {
+        background-color: #ffffff;
+    }
+
+    tbody tr td {
+        color: #000000;
+    }
+
+    .btn-back {
+        display: inline-block;
+        text-align: center;
+        margin-top: 25px;
+        color: #ffffff;
+        text-decoration: underline;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .btn-back:hover {
+        color: #C2A649;
+    }
+
+    footer {
+        width: 100%;
+        background-color: #ffffff;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 13px;
+        color: #000000;
+        border-top: 4px solid #C2A649;
+        margin-top: 40px;
+    }
+
+    footer p {
+        margin: 4px 0;
+        font-family: 'Comic Sans MS', sans-serif;
+    }
+</style>
+</html>

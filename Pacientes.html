@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Alta de pacientes | Hospital Jaguares</title>
+</head>
+<body>
+
+<header>
+    <h1>Alta de pacientes | Hospital Jaguares</h1>
+    <img width="250" align="center" src="ja.jpg" alt="Logo Hospital Jaguares">
+    <p>Es necesario registrarse para poder tener una cita asegurada</p>
+</header>
+
+<main>
+    <div class="form-container">
+        <form id="patientForm">
+            <div class="form-group">
+                <label>ID del Paciente:</label>
+                <input type="number" id="id_paciente" required>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre Completo:</label>
+                <input type="text" id="nombre_paciente" placeholder="Ej: Juan Perez" required>
+            </div>
+
+            <div class="form-group">
+                <label>Edad:</label>
+                <input type="number" id="edad_paciente" placeholder="Ej: 28" required>
+            </div>
+
+            <div class="form-group">
+                <label>Diagnóstico:</label>
+                <input type="text" id="diagnostico_paciente" placeholder="Ej: Gripe" required>
+            </div>
+
+            <div class="form-group">
+                <label>Medicamentos:</label>
+                <input type="text" id="medicamentos_paciente" placeholder="Ej: Paracetamol" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Registrar al paciente</button>
+        </form>
+    </div>
+
+    <table id="patientsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Diagnóstico</th>
+                <th>Medicamentos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Juan Perez</td>
+                <td>17</td>
+                <td>Esguince de Tobillo</td>
+                <td>Ibuprofeno</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ana Garcia</td>
+                <td>18</td>
+                <td>Gripe</td>
+                <td>Paracetamol</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Lucia torres</td>
+                <td>10</td>
+                <td>Conjuntivitis bacteriana</td>
+                <td>cloranfenicol (gotas)</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Ana Silvia Ramos</td>
+                <td>34</td>
+                <td>Artritis reumatoide</td>
+                <td>Metotrexato</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Maria Rodriguez</td>
+                <td>62</td>
+                <td>Hipertensión Arterial</td>
+                <td>Enalapril</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Carlos Ruiz</td>
+                <td>45</td>
+                <td>Varicela</td>
+                <td>Paracetamol</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Elena Mendez</td>
+                <td>28</td>
+                <td>Infección en la garganta</td>
+                <td>Amoxicilina 500 mg</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Roberto Gomez</td>
+                <td>62</td>
+                <td>Gastritis Aguda</td>
+                <td>Omeprazol</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>German Perez</td>
+                <td>46</td>
+                <td>Gripe</td>
+                <td>Paracetamol</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Diego López</td>
+                <td>28</td>
+                <td>Gripe</td>
+                <td>Paracetamol</td>
+            </tr>
+        </tbody>
+    </table> 
+
+    <a href="index.html" class="btn-back">Volver al inicio</a>
+</main>
+
+<footer>
+    <p>Esquivel Cano Nataly Scarlett | Programación</p>
+    <p>24308051280533 | 4-I</p>
+</footer>
+
+<script>
+    document.getElementById('patientForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const id = document.getElementById('id_paciente').value;
+        const nombre = document.getElementById('nombre_paciente').value;
+        const edad = document.getElementById('edad_paciente').value;
+        const diagnostico = document.getElementById('diagnostico_paciente').value;
+        const medicamentos = document.getElementById('medicamentos_paciente').value;
+
+        const tableBody = document.getElementById('patientsTable').getElementsByTagName('tbody')[0];
+        const newRow = tableBody.insertRow();
+
+        const cellId = newRow.insertCell(0);
+        const cellNombre = newRow.insertCell(1);
+        const cellEdad = newRow.insertCell(2);
+        const cellDiagnostico = newRow.insertCell(3);
+        const cellMedicamentos = newRow.insertCell(4);
+
+        cellId.textContent = id;
+        cellNombre.textContent = nombre;
+        cellEdad.textContent = edad;
+        cellDiagnostico.textContent = diagnostico;
+        cellMedicamentos.textContent = medicamentos;
+
+        document.getElementById('patientForm').reset();
+    });
+</script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+        background-color: #800040;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: #800040;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        color: #ffffff;
+        border-bottom: 4px solid #C2A649;
+    }
+
+    h1 {
+        color: #ffffff;
+        font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    header p {
+        color: #ffffff;
+        margin-top: 10px;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 40px 0px;
+        flex: 1;
+    }
+
+    .form-container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        border-top: 6px solid #C2A649;
+        margin-bottom: 40px;
+    }
+ 
+    .form-group {
+        margin-bottom: 22px;
+    }
+   
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #000000;
+        font-size: 14px;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #800040;
+        border-radius: 6px;
+        font-family: "Comic Sans MS", sans-serif;
+        font-size: 14px;
+        background-color: #faf7fa;
+        color: #333;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #C2A649;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(194, 166, 73, 0.6);
+    }
+
+    .btn-submit {
+        background-color: #C2A649;
+        color: white;
+        border: none;
+        padding: 14px 15px;
+        width: 100%;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        font-family: "Comic Sans MS", sans-serif;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        background-color: #a88e39;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Comic Sans MS', cursive;
+        margin-top: 15px;
+        background-color: #ffffff;
+    }
+
+    thead tr {
+        background-color: #4a0025;
+        color: white;
+    }
+
+    th, td {
+        border: 1px solid #800040;
+        padding: 12px 10px;
+        text-align: left;
+    }
+
+    tbody tr {
+        background-color: #ffffff;
+    }
+
+    tbody tr td {
+        color: #000000;
+    }
+
+    .btn-back {
+        display: inline-block;
+        text-align: center;
+        margin-top: 25px;
+        color: #ffffff;
+        text-decoration: underline;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .btn-back:hover {
+        color: #C2A649;
+    }
+
+    footer {
+        width: 100%;
+        background-color: #ffffff;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 13px;
+        color: #000000;
+        border-top: 4px solid #C2A649;
+        margin-top: 40px;
+    }
+
+    footer p {
+        margin: 4px 0;
+        font-family: 'Comic Sans MS', sans-serif;
+    }
+</style>
+</html>
